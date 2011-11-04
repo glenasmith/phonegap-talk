@@ -1,0 +1,16 @@
+*.iws
+*.iml
+*.ipr
+.eprj
+*.log
+.idea
+.settings
+.project
+.classpath
+eclipse
+stacktrace.log
+target
+out
+bin
+gen
+
