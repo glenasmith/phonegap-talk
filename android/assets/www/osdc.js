@@ -10,7 +10,8 @@ var	scheduleItems = [],
 	sessions = []; // map session to scheduleItem info
 
 function onDeviceReady() {
-	document.addEventListener("resume", onResume, false);
+	alert("Phonegap is ready!");
+	//document.addEventListener("resume", onResume, false);
 }
 
 function onResume() {
@@ -59,7 +60,6 @@ function showSession( urlObj, options )
 		pageSelector = urlObj.hash.replace( /\?.*$/, "" );
 	
 
-	alert("Showing session..[" + scheduleId + "]");
 	
 	var session = scheduleItemsById[ scheduleId ];
 	console.log(session);
@@ -200,7 +200,7 @@ function renderSchedule() {
 		
 	});
 	
-	alert("Processed: " + scheduleItems.length + " entries");
+	//alert("Processed: " + scheduleItems.length + " entries");
 	
 	$(scheduleItems).each(function(idx,nextScheduleItem) {
 		
@@ -226,7 +226,10 @@ function renderSchedule() {
 	speakerNames.sort();
 	
 	$(speakerNames).each(function(idx, speaker) {
-		var html = speakerTemplate({ speaker : speaker });
+		var html = speakerTemplate({ speaker : speaker, 
+			count : speakers[speaker].length,
+			id : speakers[speaker][0].id });
+		
 		$("#speakerList").append(html);
 	
 	});
@@ -234,20 +237,16 @@ function renderSchedule() {
 }
 
 function fetchImage(ele) {
-    navigator.camera.getPicture(function (img) {
-        try {
-              alert(img);
-            $(ele).html('<img src="data:image/png;base64,' + img + 
-'">');
-        } catch(e) {
-            alert(e);
-        }
-    }, function (e) {
-        alert('camera failure!');
+	alert("Fetching image for " + ele);
+    navigator.camera.getPicture(function (imageData) {
+        
+         alert("all good");
+         $(ele).src('data:image/png;base64,' + imageData);
+        
+    }, function (message) {
+        alert('camera failure: ' + message);
     }, {
-        quality: 50,
-        sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY,
-        destinationType: navigator.camera.DestinationType.DATA_URL
+        quality: 50
     });
 }
 

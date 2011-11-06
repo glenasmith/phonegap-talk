@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="hello">Hello World, Osdc2011Activity!</string>
+    <string name="hello">OSDC 2011</string>
     <string name="app_name">osdc2011</string>
 
 </resources>

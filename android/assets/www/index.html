@@ -2,9 +2,17 @@
 <html>
   <head>
     <meta http-equiv="Content-type" content="text/html; charset=utf-8">
-    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, minimum-scale=1.0, maximum-scale=2.0"/> 
+    <meta name="viewport" content="width=device-width; initial-scale=1.0 user-scalable=0;" /> 
     <title>OSDC 2011</title>
     <link rel="stylesheet" type="text/css" href="jquery.mobile-1.0rc2/jquery.mobile-1.0rc2.min.css"/>
+  	<style>
+  	
+  	#scheduleGrid li {
+  		font-size: smaller;
+  	}
+  	
+  	</style>
+  
   </head>
   
   
@@ -22,10 +30,10 @@
   	
   		
   	</div>
-  	<div data-role="footer"> 
+  	<div data-role="footer" data-position="fixed"> 
 	  	<div data-role="navbar">
 			<ul>
-				<li><a href="#home" data-icon="home" class="ui-btn-active">Home</a></li>
+				<li><a href="#home" data-icon="home" class="ui-btn-active ui-state-persist">Home</a></li>
 				<li><a href="#schedule" data-icon="grid">Schedule</a></li>
 				<li><a href="#speakers" data-icon="star">Speakers</a></li>
 				<li><a href="#sessions" data-icon="gears">Sessions</a></li>
@@ -48,7 +56,7 @@
   		
   		
   	</div>
-  	<div data-role="footer"> 
+  	<div data-role="footer" data-position="fixed"> 
   	<div data-role="navbar">
 			<ul>
 				<li><a href="#home" data-icon="home">Home</a></li>
@@ -74,7 +82,7 @@
   		
   		
   	</div>
-  	<div data-role="footer"> 
+  	<div data-role="footer" data-position="fixed"> 
   		<div data-role="navbar">
 			<ul>
 				<li><a href="#home" data-icon="home">Home</a></li>
@@ -99,7 +107,7 @@
   		
   		
   	</div>
-  	<div data-role="footer"> 
+  	<div data-role="footer" data-position="fixed"> 
   	   <div data-role="navbar">
 			<ul>
 				<li><a href="#home" data-icon="home">Home</a></li>
@@ -122,7 +130,7 @@
   	
   		
   	</div>
-  	<div data-role="footer"> 
+  	<div data-role="footer" data-position="fixed"> 
   	   <div data-role="navbar">
 			<ul>
 				<li><a href="#home" data-icon="home">Home</a></li>
@@ -146,13 +154,17 @@
    
    <script type="text/template" id="speakerItem">
 
-		<li><a href="#sessionDetail?session={{id}}" data-rel="dialog" data-transition="flip"> {{ speaker }} </a></li>
+		<li><a href="#sessionDetail?session={{id}}" data-rel="dialog"> {{ speaker }}
+	<span class="ui-li-count ui-btn-up-c ui-btn-corner-all">{{ count }}</span>
+</a>
+
+</li>
 
    </script>
    
     <script type="text/template" id="sessionItem">
 
-		<li><a href="#sessionDetail?session={{id}}" data-rel="dialog" data-transition="flip"> {{ topic }} </a></li>
+		<li><a href="#sessionDetail?session={{id}}" data-rel="dialog"> {{ topic }} </a></li>
 
    </script>
    
@@ -168,6 +180,7 @@
 
 	{{ room }}
 	
+
   	<form>
   	
   	    <label for="bozo">Bozo:</label>
@@ -177,15 +190,17 @@
 			</select> 
   		<label for="rating">Rating:</label>
   		<input type="range" name="rating" id="slider-0" value="5" min="0" max="10"  />
-  	
-  	</form> 
 
 	<input type="button" onclick="fetchImage('image{{id}}');" value="Take a Pic"/>
 
+  	
+  	</form> 
 
-	<div id="image{{id}}" class="uploadImage" style="height: 200px; width: auto;>
 
-	</div>
+
+	<img id="image{{id}}" class="uploadImage" style="height: 200px; width: auto;"/>
+
+	
 	
 
 
@@ -200,7 +215,7 @@
     <script type="text/javascript" src="handlebars/handlebars.1.0.0.beta.3.js"></script>
     
     <!-- -->
-    <script type="text/javascript" src="phonegap.1.1.0.js"></script>
+    <script type="text/javascript" src="phonegap-1.1.0.js"></script>
      <!-- -->
     <script type="text/javascript" src="osdc-data.js"></script>
     <script type="text/javascript" src="osdc.js"></script>
