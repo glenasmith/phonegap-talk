@@ -140,6 +140,9 @@ function renderSchedule() {
 	
 	$(scheduleItems).each(function(idx,nextScheduleItem) {
 		
+		
+		nextScheduleItem.style = (idx % 2 == 0) ? "even" : "odd";
+		
 		var html = scheduleTemplate(nextScheduleItem);
 		
 		if (!foundRightNowItem) {

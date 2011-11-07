@@ -7,11 +7,16 @@
     <link rel="stylesheet" type="text/css" href="jquery.mobile-1.0rc2/jquery.mobile-1.0rc2.min.css"/>
   	<style>
   	
-  	#scheduleGrid li {
-  		font-size: smaller;
+  	#scheduleGrid div {
+  		font-size: 80%;
+  	}
+  	
+  	#rightNow div {
+  		font-size: 80%;
   	}
   	
   	#osdcLogo {
+  		display: block;
   		position:relative; 
   		margin-left:auto; 
   		margin-right:auto;
@@ -32,6 +37,31 @@
   		border-radius: 15px;
   	
   	}
+  	
+  	#logo {
+  	background-image: -webkit-gradient(
+	linear,
+	left bottom,
+	left top,
+	color-stop(0.33, #102645),
+	color-stop(0.67, #204885)
+	);
+  	}
+  	
+  	.odd {
+  		min-height: 4em;
+   		
+	}
+	
+	.even {
+		min-height: 4em;
+		background: #ccc;
+		
+	}
+  	
+  	.ui-page {
+    	-webkit-backface-visibility: hidden;
+	}
   	</style>
   
   </head>
@@ -46,17 +76,21 @@
 	</div>
   	<div data-role="content">
   	
+  	<h2>Welcome to OSDC 2011!</h2>
   	
-  	<img src="images/logo_light_200_blue_bigger.png" id="osdcLogo"/> 
+  	<div id="logo">
+  		<img src="images/logo_light_200_blue_bigger.png" id="osdcLogo"/> 
+  	</div>
   	
-  	<div class="fieldHeader">Next Up:</div>
-  	<div class="ui-grid-c" id="rightNow">
+  	<div class="fieldHeader" style="margin-top: 2em;">Next Up:</div>
+  	
+  	<div class="ui-grid-c" id="rightNow" style="height: 100px">
 	  	<div class="ui-block-a"> Time </div>
 		<div class="ui-block-b"> Room 1 </div>
 		<div class="ui-block-c"> Room 2 </div>	
 		<div class="ui-block-d"> Room 3 </div> 		
   	</div> 
-  	
+  	<p/>
  		
   	</div>
   	<div data-role="footer" data-position="fixed"> 
@@ -65,7 +99,7 @@
 				<li><a href="#home" data-icon="home" class="ui-btn-active ui-state-persist">Home</a></li>
 				<li><a href="#schedule" data-icon="grid">Schedule</a></li>
 				<li><a href="#speakers" data-icon="star">Speakers</a></li>
-				<li><a href="#sessions" data-icon="gears">Sessions</a></li>
+				<li><a href="#sessions" data-icon="gear">Sessions</a></li>
 			</ul>
 		</div>
 	</div>
@@ -89,9 +123,9 @@
   	<div data-role="navbar">
 			<ul>
 				<li><a href="#home" data-icon="home">Home</a></li>
-				<li><a href="#schedule" data-icon="grid" class="ui-btn-active">Schedule</a></li>
+				<li><a href="#schedule" data-icon="grid" class="ui-btn-active ui-state-persist">Schedule</a></li>
 				<li><a href="#speakers" data-icon="star">Speakers</a></li>
-				<li><a href="#sessions" data-icon="gears">Sessions</a></li>
+				<li><a href="#sessions" data-icon="gear">Sessions</a></li>
 			</ul>
 		</div>
   	</div>
@@ -116,8 +150,8 @@
 			<ul>
 				<li><a href="#home" data-icon="home">Home</a></li>
 				<li><a href="#schedule" data-icon="grid">Schedule</a></li>
-				<li><a href="#speakers" data-icon="star" class="ui-btn-active">Speakers</a></li>
-				<li><a href="#sessions" data-icon="gears">Sessions</a></li>
+				<li><a href="#speakers" data-icon="star" class="ui-btn-active ui-state-persist">Speakers</a></li>
+				<li><a href="#sessions" data-icon="gear">Sessions</a></li>
 			</ul>
 		</div>
   	</div>
@@ -142,7 +176,7 @@
 				<li><a href="#home" data-icon="home">Home</a></li>
 				<li><a href="#schedule" data-icon="grid">Schedule</a></li>
 				<li><a href="#speakers" data-icon="star">Speakers</a></li>
-				<li><a href="#sessions" data-icon="gears" class="ui-btn-active">Sessions</a></li>
+				<li><a href="#sessions" data-icon="gear" class="ui-btn-active ui-state-persist">Sessions</a></li>
 			</ul>
 		</div>
   	</div>
@@ -165,7 +199,7 @@
 				<li><a href="#home" data-icon="home">Home</a></li>
 				<li><a href="#schedule" data-icon="grid">Schedule</a></li>
 				<li><a href="#speakers" data-icon="star">Speakers</a></li>
-				<li><a href="#sessions" data-icon="gears" class="ui-btn-active">Sessions</a></li>
+				<li><a href="#sessions" data-icon="gear">Sessions</a></li>
 			</ul>
 		</div>
   	</div>
@@ -174,10 +208,10 @@
   
   <script type="text/template" id="scheduleItem">
 
-	<div class="ui-block-a"> {{ time }} </div>
-	<div class="ui-block-b"> {{ room1 }} </div>
-	<div class="ui-block-c"> {{ room2 }} </div>	
-	<div class="ui-block-d"> {{ room3 }} </div>
+	<div class="ui-block-a {{style}}"> {{ time }} </div>
+	<div class="ui-block-b {{style}}"> {{ room1 }} </div>
+	<div class="ui-block-c {{style}}"> {{ room2 }} </div>	
+	<div class="ui-block-d {{style}}"> {{ room3 }} </div>
 
    </script>
    
