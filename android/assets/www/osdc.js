@@ -10,7 +10,6 @@ var	scheduleItems = [],
 	sessions = []; // map session to scheduleItem info
 
 function onDeviceReady() {
-	alert("Phonegap is ready!");
 	//document.addEventListener("resume", onResume, false);
 }
 
@@ -19,113 +18,46 @@ function onResume() {
 	 
 }
 
-function loadRemoteSiteContent() {
-		if (remoteSiteLoaded === false) {
-			if (typeof(navigator.network) === "undefined") {
-				return false;
-			} else if(navigator.network.connection.type === Connection.NONE || (device.platform.startsWith("iP") && navigator.network.connection.type === Connection.UNKNOWN)) {
-				// iPhone/iPad returns "UNKNOWN" when no connected, but Android returns that for 3G!
-				return false;
-				
-			} else {
-				
-				//TODO: Load remote site here
-				
-				
-			}
-		}
-		remoteSiteLoaded = true;
-		return true;
-}
 
-
-//Load the data for a specific session, based on
-//the URL passed in. Generate markup for the items in the
-//category, inject it into an embedded page, and then make
-//that page the current active page.
 function showSession( urlObj, options )
 {
 	
 	var scheduleId = urlObj.hash.replace( /.*session=/, "" ),
-
-		// Get the object that represents the category we
-		// are interested in. Note, that at this point we could
-		// instead fire off an ajax request to fetch the data, but
-		// for the purposes of this sample, it's already in memory.
-		
-
-		// The pages we use to display our content are already in
-		// the DOM. The id of the page we are going to write our
-		// content into is specified in the hash before the '?'.
 		pageSelector = urlObj.hash.replace( /\?.*$/, "" );
 	
-
 	
 	var session = scheduleItemsById[ scheduleId ];
-	console.log(session);
-	
 	
 	if ( session ) {
-		// Get the page we are going to dump our content into.
 		var $page = $( pageSelector ),
-
-			// Get the header for the page.
 			$header = $page.children( ":jqmData(role=header)" ),
-
-			// Get the content area element for the page.
 			$content = $page.children( ":jqmData(role=content)" )
 
-			
-
-		
-
-		// Find the h1 element in our header and inject the name of
-		// the category into it.
 		$header.find( "h1" ).html( session.speaker + " - " + session.topic);
 
 		// Inject the category items markup into the content element.
 		var sessionDetail = Handlebars.compile($("#sessionDetailTemplate").html());
 		$content.html( sessionDetail(session) );
 
-		// Pages are lazily enhanced. We call page() on the page
-		// element to make sure it is always enhanced before we
-		// attempt to enhance the listview markup we just injected.
-		// Subsequent calls to page() are ignored since a page/widget
-		// can only be enhanced once.
 		$page.page();
 
-		
-		// We don't want the data-url of the page we just modified
-		// to be the url that shows up in the browser's location field,
-		// so set the dataUrl option to the URL for the category
-		// we just loaded.
 		options.dataUrl = urlObj.href;
 
-		// Now call changePage() and tell it to switch to
-		// the page we just modified.
 		$.mobile.changePage( $page, options );
 	}
 }
 
 
-//Listen for any attempts to call changePage().
 $(document).bind( "pagebeforechange", function( e, data ) {
-	// We only want to handle changePage() calls where the caller is
-	// asking us to load a page by URL.
+
 	if ( typeof data.toPage === "string" ) {
-		// We are being asked to load a page by URL, but we only
-		// want to handle URLs that request the data for a specific
-		// category.
+	
 		var u = $.mobile.path.parseUrl( data.toPage ),
 			re = /^#sessionDetail/;
 		if ( u.hash.search(re) !== -1 ) {
-			// We're being asked to display the items for a specific category.
-			// Call our internal method that builds the content for the category
-			// on the fly based on our in-memory category data structure.
+
 			showSession( u, data.options );
 
-			// Make sure to tell changePage() we've handled this call so it doesn't
-			// have to do anything.
 			e.preventDefault();
 		}
 	}
@@ -135,7 +67,7 @@ $(document).bind( "pagebeforechange", function( e, data ) {
 function extractSessionInfo(id, textToParse, room, scheduleItem, existingSpeakers, existingSessions) {
 	
 	if (textToParse.indexOf("-") > -1) {
-		// ok we have a speaker
+
 		var speakerAndTopic = textToParse.split(" - ");
 		var speaker = $.trim(speakerAndTopic[0]);
 		var topic = $.trim(speakerAndTopic[1]);
@@ -202,9 +134,25 @@ function renderSchedule() {
 	
 	//alert("Processed: " + scheduleItems.length + " entries");
 	
+	var now = new Date();
+	var foundRightNowItem = false;
+	
+	
 	$(scheduleItems).each(function(idx,nextScheduleItem) {
 		
 		var html = scheduleTemplate(nextScheduleItem);
+		
+		if (!foundRightNowItem) {
+			
+			var arr = nextScheduleItem.time.split(/[- :\/]/),
+		    nextTime = new Date(arr[2], arr[1]-1, arr[0], arr[3], arr[4], arr[5]);
+			
+			if (now.getTime() < nextTime.getTime()) {
+				$("#rightNow").append(html);
+				foundRightNowItem = true;
+			}
+		}
+		
 		$("#scheduleGrid").append(html);
 		
 	});
@@ -237,16 +185,13 @@ function renderSchedule() {
 }
 
 function fetchImage(ele) {
-	alert("Fetching image for " + ele);
     navigator.camera.getPicture(function (imageData) {
-        
-         alert("all good");
-         $(ele).src('data:image/png;base64,' + imageData);
-        
+    	var image = document.getElementById(ele);
+        image.src = "data:image/jpeg;base64," + imageData;
     }, function (message) {
-        alert('camera failure: ' + message);
+        alert('Camera Failure: ' + message);
     }, {
-        quality: 50
+        quality: 25
     });
 }
 
@@ -263,12 +208,12 @@ $(document).ready(function() {
 	
 	
 	setTimeout(function() {
-		loadRemoteSiteContent();
-	}, 1000);
+		renderSchedule();
+	}, 2000);
 	
 	document.addEventListener("deviceready", onDeviceReady, false);
 	
-	renderSchedule();
+	
 	
 });
 

@@ -11,6 +11,27 @@
   		font-size: smaller;
   	}
   	
+  	#osdcLogo {
+  		position:relative; 
+  		margin-left:auto; 
+  		margin-right:auto;
+  	}
+  	
+  	.fieldHeader {
+  		font-weight: bold;
+  		font-size: larger;
+  	
+  	}
+  	
+  	.fieldBody {
+  	
+  		border: 1px solid black;
+  		padding: 4px;
+  		font-size: xx-large;
+  		background-color: white;
+  		border-radius: 15px;
+  	
+  	}
   	</style>
   
   </head>
@@ -23,12 +44,20 @@
 	<div data-role="header"> 
 		<h2>OSDC 2011</h2>
 	</div>
-  	<div data-role="content"> 
+  	<div data-role="content">
   	
-  	Right Now:
-  	Up Next:
   	
-  		
+  	<img src="images/logo_light_200_blue_bigger.png" id="osdcLogo"/> 
+  	
+  	<div class="fieldHeader">Next Up:</div>
+  	<div class="ui-grid-c" id="rightNow">
+	  	<div class="ui-block-a"> Time </div>
+		<div class="ui-block-b"> Room 1 </div>
+		<div class="ui-block-c"> Room 2 </div>	
+		<div class="ui-block-d"> Room 3 </div> 		
+  	</div> 
+  	
+ 		
   	</div>
   	<div data-role="footer" data-position="fixed"> 
 	  	<div data-role="navbar">
@@ -170,28 +199,29 @@
    
    <script type="text/template" id="sessionDetailTemplate">
    
-	{{ topic }}
+	<div class="fieldHeader">Topic:</div>
+	<div class="fieldBody">{{ topic }}</div>
 
-	{{ speaker }}
 
-	{{ time }}
+	<div class="fieldHeader">Speaker:</div>
+	<div class="fieldBody">{{ speaker }}</div>
 
-	{{ length }}
+	<div class="fieldHeader">Time:</div>
+	<div class="fieldBody">{{ time }}</div>
 
-	{{ room }}
+	<div class="fieldHeader">Length:</div>
+	<div class="fieldBody">{{ minutes }} mins</div>
+
+	<div class="fieldHeader">Room:</div>
+	<div class="fieldBody">{{ room }}</div>
 	
 
   	<form>
   	
-  	    <label for="bozo">Bozo:</label>
-			<select name="slider" id="bozo" data-role="slider" style="width: 100px;">
-				<option value="off">Off</option>
-				<option value="on">On</option>
-			</select> 
   		<label for="rating">Rating:</label>
   		<input type="range" name="rating" id="slider-0" value="5" min="0" max="10"  />
 
-	<input type="button" onclick="fetchImage('image{{id}}');" value="Take a Pic"/>
+		<input type="button" onclick="fetchImage('image{{id}}');" value="Take a Pic"/>
 
   	
   	</form> 
@@ -199,9 +229,6 @@
 
 
 	<img id="image{{id}}" class="uploadImage" style="height: 200px; width: auto;"/>
-
-	
-	
 
 
 	</script>
