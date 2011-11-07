@@ -1,23 +1,15 @@
 /*
 
-	Some sample OSDC schedule data pulled from a Google spreadsheet
-
-	// From http://mikeymckay.github.com/google-spreadsheet-javascript/sample.html?url=https://spreadsheets.google.com/pub?key=0AsIKXTGzbbNtdDYwZGF3NGtFeVZCRGJDTzhLLTI1YWc&hl=en&output=html
-      localStorage.clear();
-      var sample_url = "https://spreadsheets.google.com/pub?key=0Ago31JQPZxZrdHF2bWNjcTJFLXJ6UUM5SldEakdEaXc&hl=en&output=html";
-      var url_parameter = document.location.search.split(/\?url=/)[1]
-      var url = url_parameter || sample_url;
-      var googleSpreadsheet = new GoogleSpreadsheet();
-      googleSpreadsheet.url(url);
-      googleSpreadsheet.load(function(result) {
-        $('#results').html(JSON.stringify(result).replace(/,/g,",\n"));
-      });
-    
-
+	Data can be pulled from an embedded JSON object (static data fallback), or dynamically from a
+	public Google spreadsheet.
 
 */
 
-var osdcData = {"url":"https://spreadsheets.google.com/feeds/cells/0AsIKXTGzbbNtdDYwZGF3NGtFeVZCRGJDTzhLLTI1YWc/od6/public/basic",
+var osdcData, staticData = false
+
+if (staticData) {
+
+osdcData = {"url":"https://spreadsheets.google.com/feeds/cells/0AsIKXTGzbbNtdDYwZGF3NGtFeVZCRGJDTzhLLTI1YWc/od6/public/basic",
 "key":"0AsIKXTGzbbNtdDYwZGF3NGtFeVZCRGJDTzhLLTI1YWc",
 "jsonUrl":"http://spreadsheets.google.com/feeds/cells/0AsIKXTGzbbNtdDYwZGF3NGtFeVZCRGJDTzhLLTI1YWc/od6/public/basic?alt=json-in-script",
 "googleUrl":{"sourceIdentifier":"https://spreadsheets.google.com/feeds/cells/0AsIKXTGzbbNtdDYwZGF3NGtFeVZCRGJDTzhLLTI1YWc/od6/public/basic",
@@ -226,3 +218,20 @@ var osdcData = {"url":"https://spreadsheets.google.com/feeds/cells/0AsIKXTGzbbNt
 "Tony Beal - Keynote",
 "",
 ""]}
+
+} else {
+	
+	//Some sample OSDC schedule data pulled from a Google spreadsheet
+	// From http://mikeymckay.github.com/google-spreadsheet-javascript/sample.html?url=https://spreadsheets.google.com/pub?key=0AsIKXTGzbbNtdDYwZGF3NGtFeVZCRGJDTzhLLTI1YWc&hl=en&output=html
+      localStorage.clear();
+      var osdc_url = "https://spreadsheets.google.com/pub?key=0AsIKXTGzbbNtdDYwZGF3NGtFeVZCRGJDTzhLLTI1YWc&hl=en&output=html";
+      var url_parameter = document.location.search.split(/\?url=/)[1]
+      var url = url_parameter || osdc_url;
+      var googleSpreadsheet = new GoogleSpreadsheet();
+      googleSpreadsheet.url(url);
+      googleSpreadsheet.load(function(result) {
+    	  alert("Remote OSDC Schedule Sync'd");
+    	  osdcData = result;
+      });
+    		
+}
