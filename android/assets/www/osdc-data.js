@@ -225,10 +225,8 @@ osdcData = {"url":"https://spreadsheets.google.com/feeds/cells/0AsIKXTGzbbNtdDYw
 	// From http://mikeymckay.github.com/google-spreadsheet-javascript/sample.html?url=https://spreadsheets.google.com/pub?key=0AsIKXTGzbbNtdDYwZGF3NGtFeVZCRGJDTzhLLTI1YWc&hl=en&output=html
       localStorage.clear();
       var osdc_url = "https://spreadsheets.google.com/pub?key=0AsIKXTGzbbNtdDYwZGF3NGtFeVZCRGJDTzhLLTI1YWc&hl=en&output=html";
-      var url_parameter = document.location.search.split(/\?url=/)[1]
-      var url = url_parameter || osdc_url;
       var googleSpreadsheet = new GoogleSpreadsheet();
-      googleSpreadsheet.url(url);
+      googleSpreadsheet.url(osdc_url);
       googleSpreadsheet.load(function(result) {
     	  alert("Remote OSDC Schedule Sync'd");
     	  osdcData = result;
