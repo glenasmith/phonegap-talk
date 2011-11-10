@@ -2,7 +2,6 @@ package au.com.bytecode;
 
 import com.phonegap.DroidGap;
 
-import android.app.Activity;
 import android.os.Bundle;
 
 public class Osdc2011Activity extends DroidGap {
