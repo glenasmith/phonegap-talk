@@ -1,0 +1,54 @@
+#scheduleGrid div {
+	font-size: 80%;
+}
+
+#rightNow div {
+	font-size: 80%;
+}
+
+@media only screen and (max-device-width: 1280px) {
+	
+	#scheduleGrid div {
+		font-size: 200%;
+	}
+	#rightNow div {
+		font-size: 200%;
+	}
+}
+
+#osdcLogo {
+	display: block;
+	position: relative;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.fieldHeader {
+	font-weight: bold;
+	font-size: larger;
+}
+
+.fieldBody {
+	border: 1px solid black;
+	padding: 4px;
+	font-size: xx-large;
+	background-color: white;
+	border-radius: 15px;
+}
+
+#logo {
+	background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0.33, #102645), color-stop(0.67, #204885) );
+}
+
+.odd {
+	min-height: 4em;
+}
+
+.even {
+	min-height: 4em;
+	background: #ccc;
+}
+
+.ui-page {
+	-webkit-backface-visibility: hidden;
+}
