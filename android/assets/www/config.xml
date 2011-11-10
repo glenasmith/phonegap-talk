@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<widget xmlns		= "http://www.w3.org/ns/widgets"
+	xmlns:gap	= "http://phonegap.com/ns/1.0"
+	id		= "au.com.bytecode.mobile.osdc"
+	version 	= "0.0.1">
+
+	<name>osdc2011</name>
+
+	<description>
+		Open Source Developers Conference 2011 Unofficial Scedule Info 
+	</description>
+
+	<author href="http://blogs.bytecode.com.au/glen"
+		email="glen@bytecode.com.au">
+		Glen Smith
+	</author>
+
+	<!--
+	<gap:platforms>
+		<gap:platform name="ios"/>
+		<gap:platform name="android" minVersion="2.1" />
+		<gap:platform name="webos" />
+		<gap:platform name="symbian.wrt" />
+		<gap:platform name="blackberry" project="widgets"/>
+	</gap:platforms>
+-->
+
+	<icon src="images/logo_light_200_blue_bigger.png" gap:role="default" />
+
+	<feature name="http://api.phonegap.com/1.0/geolocation"/>
+	<feature name="http://api.phonegap.com/1.0/network"/>
+	<feature name="http://api.phonegap.com/1.0/camera"/>
+
+	<!-- sample preference specification -->
+	<!-- <preference name="autorotate" value="false" readonly="true"/> -->
+</widget>
