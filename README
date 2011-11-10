@@ -1,3 +1,6 @@
 
-This repo is going to host some demo code for the OSDC talk on how on "Fake your way as a Mobile Developer Rockstar with PhoneGap". You can read the details of the talk @ http://osdc.com.au/schedule/#fakeyourwayasamob
+This repo hosts some demo code for the OSDC talk on how on "Fake your way as a Mobile Developer Rockstar with PhoneGap". It creates a basic conference scheduling app from a Google Spreadsheet. 
 
+You can read the details of the talk @ http://osdc.com.au/schedule/#fakeyourwayasamob
+
+Or catch the blog post at http://blogs.bytecode.com.au/glen/2011/11/08/osdc2011-phonegap-and-google-spreadsheet-hacking.html
