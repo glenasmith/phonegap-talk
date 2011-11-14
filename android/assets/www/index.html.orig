@@ -1,0 +1,228 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1"> 
+    <title>OSDC 2011</title>
+    <link rel="stylesheet" type="text/css" href="jquerymobile/jquery.mobile-1.0rc2.min.css"/>
+    <link rel="stylesheet" type="text/css" href="osdc.css"/>
+  </head>
+ 
+  <body>
+  	
+  <!-- Home Page -->	
+  <div data-role="page" id="home" class="m-page">
+	<div data-role="header"> 
+		<h2>OSDC 2011</h2>
+	</div>
+  	<div data-role="content">
+  	
+  	<h2>Welcome to OSDC 2011!</h2>
+  	
+  	<div id="logo">
+  		<img src="images/logo_light_200_blue_bigger.png" id="osdcLogo"/> 
+  	</div>
+  	
+  	<div class="fieldHeader" style="margin-top: 2em;">Next Up:</div>
+  	
+  	<div class="ui-grid-c" id="rightNow" style="height: 100px">
+	  	<div class="ui-block-a"> Time </div>
+		<div class="ui-block-b"> Room 1 </div>
+		<div class="ui-block-c"> Room 2 </div>	
+		<div class="ui-block-d"> Room 3 </div> 		
+  	</div> 
+  	<p/>
+ 		
+  	</div>
+  	<div data-role="footer" data-position="fixed"> 
+	  	<div data-role="navbar">
+			<ul>
+				<li><a href="#home" data-icon="home" class="ui-btn-active ui-state-persist">Home</a></li>
+				<li><a href="#schedule" data-icon="grid">Schedule</a></li>
+				<li><a href="#speakers" data-icon="star">Speakers</a></li>
+				<li><a href="#sessions" data-icon="gear">Sessions</a></li>
+			</ul>
+		</div>
+	</div>
+  </div>
+  
+  
+    <!-- Schedule Page -->	
+  <div data-role="page" id="schedule" class="m-page"  data-add-back-btn="true" >
+	<div data-role="header"> 
+		<h2>Schedule</h2>
+	</div>
+  	<div data-role="content">
+  	
+  		<div class="ui-grid-c" id="scheduleGrid">
+  		
+  		</div> 
+  		
+  		
+  	</div>
+  	<div data-role="footer" data-position="fixed"> 
+  	<div data-role="navbar">
+			<ul>
+				<li><a href="#home" data-icon="home">Home</a></li>
+				<li><a href="#schedule" data-icon="grid" class="ui-btn-active ui-state-persist">Schedule</a></li>
+				<li><a href="#speakers" data-icon="star">Speakers</a></li>
+				<li><a href="#sessions" data-icon="gear">Sessions</a></li>
+			</ul>
+		</div>
+  	</div>
+  </div>
+  
+  
+  <!-- Speaker Page -->	
+  <div data-role="page" id="speakers" class="m-page" data-add-back-btn="true">
+	<div data-role="header">
+		<h2>Speakers</h2>
+	</div>
+  	<div data-role="content"> 
+  	
+  		<ul data-role="listview" id="speakerList">
+  		
+  		</ul>
+  		
+  		
+  	</div>
+  	<div data-role="footer" data-position="fixed"> 
+  		<div data-role="navbar">
+			<ul>
+				<li><a href="#home" data-icon="home">Home</a></li>
+				<li><a href="#schedule" data-icon="grid">Schedule</a></li>
+				<li><a href="#speakers" data-icon="star" class="ui-btn-active ui-state-persist">Speakers</a></li>
+				<li><a href="#sessions" data-icon="gear">Sessions</a></li>
+			</ul>
+		</div>
+  	</div>
+  </div>  
+  
+    <!-- Session Page -->	
+  <div data-role="page" id="sessions" class="m-page"  data-add-back-btn="true">
+	<div data-role="header"> 
+		<h2>Sessions</h2>
+	</div>
+  	<div data-role="content"> 
+  	
+  		<ul data-role="listview" id="sessionList">
+  		
+  		</ul>
+  		
+  		
+  	</div>
+  	<div data-role="footer" data-position="fixed"> 
+  	   <div data-role="navbar">
+			<ul>
+				<li><a href="#home" data-icon="home">Home</a></li>
+				<li><a href="#schedule" data-icon="grid">Schedule</a></li>
+				<li><a href="#speakers" data-icon="star">Speakers</a></li>
+				<li><a href="#sessions" data-icon="gear" class="ui-btn-active ui-state-persist">Sessions</a></li>
+			</ul>
+		</div>
+  	</div>
+  </div>
+  
+    <!-- Session Detail Page -->	
+  <div data-role="page" id="sessionDetail" class="m-page"  data-add-back-btn="true">
+	<div data-role="header"> 
+		<h2>Session</h2>
+	</div>
+  	<div data-role="content">
+  	
+  	
+  	
+  		
+  	</div>
+  	<div data-role="footer" data-position="fixed"> 
+  	   <div data-role="navbar">
+			<ul>
+				<li><a href="#home" data-icon="home">Home</a></li>
+				<li><a href="#schedule" data-icon="grid">Schedule</a></li>
+				<li><a href="#speakers" data-icon="star">Speakers</a></li>
+				<li><a href="#sessions" data-icon="gear">Sessions</a></li>
+			</ul>
+		</div>
+  	</div>
+  </div>
+  
+  
+  <script type="text/template" id="scheduleItem">
+
+	<div class="ui-block-a {{style}}"> {{ time }} </div>
+	<div class="ui-block-b {{style}}"> {{ room1 }} </div>
+	<div class="ui-block-c {{style}}"> {{ room2 }} </div>	
+	<div class="ui-block-d {{style}}"> {{ room3 }} </div>
+
+   </script>
+   
+   <script type="text/template" id="speakerItem">
+
+		<li><a href="#sessionDetail?session={{id}}" data-rel="dialog"> {{ speaker }}
+	<span class="ui-li-count ui-btn-up-c ui-btn-corner-all">{{ count }}</span>
+</a>
+
+</li>
+
+   </script>
+   
+    <script type="text/template" id="sessionItem">
+
+		<li><a href="#sessionDetail?session={{id}}" data-rel="dialog"> {{ topic }} </a></li>
+
+   </script>
+   
+   <script type="text/template" id="sessionDetailTemplate">
+   
+	<div class="fieldHeader">Topic:</div>
+	<div class="fieldBody">{{ topic }}</div>
+
+
+	<div class="fieldHeader">Speaker:</div>
+	<div class="fieldBody">{{ speaker }}</div>
+
+	<div class="fieldHeader">Time:</div>
+	<div class="fieldBody">{{ time }}</div>
+
+	<div class="fieldHeader">Length:</div>
+	<div class="fieldBody">{{ minutes }} mins</div>
+
+	<div class="fieldHeader">Room:</div>
+	<div class="fieldBody">{{ room }}</div>
+	
+
+  	<form>
+  	
+  		<label for="rating">Rating:</label>
+  		<input type="range" name="rating" id="slider-0" value="5" min="0" max="10"  />
+
+		<input type="button" onclick="fetchImage('image{{id}}');" value="Take a Pic"/>
+
+  	
+  	</form> 
+
+
+
+	<img id="image{{id}}" class="uploadImage" style="height: 200px; width: auto;"/>
+
+
+	</script>
+  	
+  
+  
+     
+  </body>
+    <script type="text/javascript" src="jquery/jquery-1.6.2.min.js"></script>
+    <script type="text/javascript" src="jquerymobile/jquery.mobile-1.0rc2.min.js"></script>
+    <script type="text/javascript" src="handlebars/handlebars.1.0.0.beta.3.js"></script>
+    
+    <!-- -->
+    <script type="text/javascript" src="phonegap-1.2.0.js"></script>
+     <!-- -->
+    <script type="text/javascript" src="spreadsheet/google-spreadsheet.js"></script>
+    <script type="text/javascript" src="osdc-data.js"></script>
+    <script type="text/javascript" src="osdc.js"></script>
+    
+    
+  
+</html>

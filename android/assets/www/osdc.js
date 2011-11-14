@@ -203,8 +203,10 @@ function fetchImage(ele) {
 
 $(document).ready(function() {
 	
-	$.mobile.minScrollBack = 1000;
-	
+	if ($.mobile != undefined) { // for unit testing
+		$.mobile.minScrollBack = 1000;
+	}
+		
 	$('.m-page').live('swiperight',function(event){
 		 $.mobile.changePage( "#home", { transition: "slide", reverse: true} );
 	 });
