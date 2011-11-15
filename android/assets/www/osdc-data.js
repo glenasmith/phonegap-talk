@@ -228,7 +228,7 @@ osdcData = {"url":"https://spreadsheets.google.com/feeds/cells/0AsIKXTGzbbNtdDYw
       var googleSpreadsheet = new GoogleSpreadsheet();
       googleSpreadsheet.url(osdc_url);
       googleSpreadsheet.load(function(result) {
-    	  alert("Remote OSDC Schedule Sync'd");
+    	  //alert("Remote OSDC Schedule Sync'd");
     	  osdcData = result;
       });
     		

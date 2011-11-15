@@ -13,11 +13,49 @@
 
   <script>
   $(document).ready(function(){
+  	
+  var selectedItem = null;
+  	
+  function nextSchedule() {
+  	
+  	var now = new Date();
+	var foundRightNowItem = false;
+	
+	
+	$(scheduleItems).each(function(idx,nextScheduleItem) {
+		
+		
+		nextScheduleItem.style = (idx % 2 == 0) ? "even" : "odd";
+			
+		if (!foundRightNowItem) {
+			
+			var arr = nextScheduleItem.time.split(/[- :\/]/),
+		    nextTime = new Date(arr[2], arr[1]-1, arr[0], arr[3], arr[4], arr[5]);
+			
+			if (now.getTime() < nextTime.getTime()) {
+				selectedItem = nextScheduleItem
+				foundRightNowItem = true;
+			}
+		}
+		
+		$("#scheduleGrid").append(html);
+		
+	});
+  	
+  	
+  	
+  }	
+ 
+nextSchedule(); 	
+  	
+  	
     
 test("a basic test example", function() {
+  
   ok( true, "this test is fine" );
   var value = "hello";
   equal( value, "hello", "We expect value to be hello" );
+  equal( selectedItem.time, "xx:xx:xx" );
 });
 
 
